@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing pnpm..."
+        - npm install -g pnpm
+        - pnpm --version       # sanity check (optional)
+    build:
+      commands:
+        - pnpm install
+        - pnpm run build       # or whatever your build script is
+  artifacts:
+    baseDirectory: .next    # or the correct output folder for your framework
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*     # or any other caches you need
